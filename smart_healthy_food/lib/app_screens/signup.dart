@@ -8,7 +8,7 @@ class SignUp extends StatefulWidget {
     return _SignUpState();
   }
 }
-
+enum FormType { register1, register2 }
 class _SignUpState extends State<SignUp> {
   UserManagement userObj = new UserManagement();
 

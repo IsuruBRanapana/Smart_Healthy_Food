@@ -33,6 +33,33 @@ class _LoginPageState extends State<LoginPage>{
       _isHiddenCPw = !_isHiddenCPw;
     });
   }
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void validateAndSubmit() async {
+    if (validateAndSave()) {
+      try {
+        if (_formType == FormType.login) {
+          String userId=await widget.auth.signInWithEmailAndPassword(_email, _password);
+          print('$userId');
+        }else if(_formType==FormType.register){
+          String userId=await widget.auth.createUserWithEmailAndPassword(_email,_password);
+          print('$userId');
+        }
+        widget.onSignedIn(); 
+      } catch (e) {
+        print(e); 
+      }
+    }
+  }
+
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
