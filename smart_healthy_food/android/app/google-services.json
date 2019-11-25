@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58023209105",
+    "firebase_url": "https://smart-food-b4493.firebaseio.com",
+    "project_id": "smart-food-b4493",
+    "storage_bucket": "smart-food-b4493.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58023209105:android:79d753f7d8daf275af7730",
+        "android_client_info": {
+          "package_name": "com.smarthealthy.smart_healthy_food"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58023209105-bimp409av9c90mthsa2our8jplcdjlp1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-dw5ioT8BkUdiuTd4RuVuzAzzt9dz5do"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58023209105-bimp409av9c90mthsa2our8jplcdjlp1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
