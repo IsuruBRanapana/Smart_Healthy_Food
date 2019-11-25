@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smart_healthy_food/app_screens/auth.dart';
+import 'package:smart_healthy_food/app_screens/home.dart';
 import 'package:smart_healthy_food/app_screens/signup.dart';
 
 class LoginPage extends StatefulWidget{
-  LoginPage({this.auth});
+  LoginPage({this.auth,this.onSignedIn});
   final BaseAuth auth;
+  final VoidCallback onSignedIn;
   @override
   State<StatefulWidget> createState() {
     return _LoginPageState();
@@ -142,6 +144,7 @@ class _LoginPageState extends State<LoginPage>{
                         Navigator.pop(context);
                         Navigator.push(context,
                           MaterialPageRoute(
+                            builder: (context) => HomePage()
                           )
                         );
                       }
