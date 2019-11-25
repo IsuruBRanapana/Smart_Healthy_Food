@@ -3,6 +3,8 @@ import 'package:smart_healthy_food/app_screens/auth.dart';
 import 'package:smart_healthy_food/app_screens/signup.dart';
 
 class LoginPage extends StatefulWidget{
+  LoginPage({this.auth});
+  final BaseAuth auth;
   @override
   State<StatefulWidget> createState() {
     return _LoginPageState();
