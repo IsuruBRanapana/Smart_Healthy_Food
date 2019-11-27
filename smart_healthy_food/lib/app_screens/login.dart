@@ -16,6 +16,8 @@ class LoginPage extends StatefulWidget{
 class _LoginPageState extends State<LoginPage>{
   var _formKey=GlobalKey<FormState>();
   double _minimumPadding = 5.0;
+  String _email;
+  String _password;
 
   bool _isHiddenPw = true;
   bool _isHiddenCPw = true;
@@ -27,12 +29,6 @@ class _LoginPageState extends State<LoginPage>{
     });
   }
 
-  void _visibleCPw() {
-    setState(() {
-      _isHiddenPw = _isHiddenPw;
-      _isHiddenCPw = !_isHiddenCPw;
-    });
-  }
   bool validateAndSave() {
     final form = _formKey.currentState;
     if (form.validate()) {
@@ -46,13 +42,8 @@ class _LoginPageState extends State<LoginPage>{
   void validateAndSubmit() async {
     if (validateAndSave()) {
       try {
-        if (_formType == FormType.login) {
-          String userId=await widget.auth.signInWithEmailAndPassword(_email, _password);
-          print('$userId');
-        }else if(_formType==FormType.register){
-          String userId=await widget.auth.createUserWithEmailAndPassword(_email,_password);
-          print('$userId');
-        }
+        String userId=await widget.auth.signInWithEmailAndPassword(_email, _password);
+        print('$userId');
         widget.onSignedIn(); 
       } catch (e) {
         print(e); 
@@ -98,6 +89,7 @@ class _LoginPageState extends State<LoginPage>{
                     if (value.isEmpty) {
                       return "Enter the E mail Address";
                     }
+                    _email=emailController.text;
                     return null;
                   },
                   keyboardType: TextInputType.emailAddress,
@@ -128,6 +120,7 @@ class _LoginPageState extends State<LoginPage>{
                     if (value.isEmpty) {
                       return "Enter the Password";
                     }
+                    _password=passwordController.text;
                     return null;
                   },
                   keyboardType: TextInputType.text,
@@ -168,13 +161,16 @@ class _LoginPageState extends State<LoginPage>{
                     }else{
                       String userID=await AuthService().signInWithEmailAndPassword(emailController.text, passwordController.text);
                       if(userID!=null){
+
                         Navigator.pop(context);
                         Navigator.push(context,
                           MaterialPageRoute(
                             builder: (context) => HomePage()
                           )
                         );
+                        
                       }
+                    
                       //TODO: Set State
                     }
                   },

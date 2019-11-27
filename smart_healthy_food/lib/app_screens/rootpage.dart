@@ -23,7 +23,7 @@ class _RootPageState extends State<RootPage> {
     widget.auth.currentUser().then((userId) {
       setState(() {
         authStatus =
-            userId == null ? AuthStatus.notSignedIn : AuthStatus.signedIn;
+            userId != null ? AuthStatus.signedIn : AuthStatus.notSignedIn;
       });
     });
   }
