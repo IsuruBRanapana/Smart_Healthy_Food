@@ -12,8 +12,25 @@ class SignUp extends StatefulWidget {
 enum FormType { register1, register2 }
 
 class _SignUpState extends State<SignUp> {
+
   FormType _formType = FormType.register1;
   UserManagement userObj = new UserManagement();
+  var _formKey = GlobalKey<FormState>();
+
+  void moveToRegister1() {
+    _formKey.currentState.reset();
+    setState(() {
+      _formType = FormType.register1;
+    });
+  }
+
+  void moveToRegister2() {
+    _formKey.currentState.reset();
+    setState(() {
+      _formType = FormType.register2;
+    });
+  }
+
 
   bool _isHiddenPw = true;
   bool _isHiddenCPw = true;
@@ -32,7 +49,7 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
-  var _formKey = GlobalKey<FormState>();
+  
   double _minimumPadding = 5.0;
 
   TextEditingController firstNameController = TextEditingController();
@@ -231,7 +248,8 @@ class _SignUpState extends State<SignUp> {
                                 email: emailController.text,
                                 password: passwordController.text);
 
-                        Navigator.pop(context);
+                        //Navigator.pop(context);
+                        moveToRegister2();
                         userObj.addData({
                           'firstname': this.firstname,
                           'lastname': this.lastname,
