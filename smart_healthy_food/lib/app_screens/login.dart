@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage>{
     });
   }
 
+  //validate the form
   bool validateAndSave() {
     final form = _formKey.currentState;
     if (form.validate()) {
@@ -39,6 +40,7 @@ class _LoginPageState extends State<LoginPage>{
     }
   }
 
+  //submit the form
   void validateAndSubmit() async {
     if (validateAndSave()) {
       try {
@@ -63,6 +65,7 @@ class _LoginPageState extends State<LoginPage>{
   }
 
 
+  //log in form
   Widget logInForm(){
     TextStyle textStyle=Theme.of(context).textTheme.title;
     return Container(
@@ -77,10 +80,17 @@ class _LoginPageState extends State<LoginPage>{
           ),
           child: ListView(
             children: <Widget>[
-              SizedBox(
-                height: 260.0,
+              
+              //logo
+              Container(
+                height: 350.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('images/logo.png'))
+                ),
               ),
-              //E mail
+
+              //E mail text field
               Padding(
                 padding: EdgeInsets.only(bottom: _minimumPadding),
                 child: TextFormField(
@@ -110,7 +120,7 @@ class _LoginPageState extends State<LoginPage>{
                 ),
               ),
 
-              //Password
+              //Password text feild
               Padding(
                 padding: EdgeInsets.only(
                     top: _minimumPadding, bottom: _minimumPadding),
@@ -148,7 +158,7 @@ class _LoginPageState extends State<LoginPage>{
                 ),
               ),
 
-              //login
+              //login button
               Container(
                 height: 70.0,
                 padding: EdgeInsets.only(left: 65.0,right: 65.0,top: 10.0, bottom: 10.0),
@@ -199,7 +209,7 @@ class _LoginPageState extends State<LoginPage>{
                 ),
               ),
 
-              //Text
+              //Or text
               Center(
                 child: Text(
                   'OR',
@@ -211,7 +221,9 @@ class _LoginPageState extends State<LoginPage>{
                     ),
                 ),
               ),
-              //sign up with google
+
+
+              //sign up with google button
               Container(
                 padding: EdgeInsets.only(top: 10.0),
                 color: Colors.white,
@@ -226,7 +238,7 @@ class _LoginPageState extends State<LoginPage>{
                 ),
               ),
 
-              //sign up
+              //sign up gesture detector
               Center(
                 child: Row(
                   children: <Widget>[
@@ -271,6 +283,8 @@ class _LoginPageState extends State<LoginPage>{
       ),
     );
   }
+
+  //sign in buttons
   Widget _signInButton() {
     return OutlineButton(
       splashColor: Colors.grey,

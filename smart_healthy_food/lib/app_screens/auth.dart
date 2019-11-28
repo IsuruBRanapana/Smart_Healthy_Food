@@ -20,10 +20,12 @@ class AuthService implements BaseAuth{
     return user.uid;
   }
 
-  //sign in with google
+  //sign in with anon
   Future<String> signInWithCredential(){
     //Todo: implement this method
   }
+
+  //sign in with google
   Future<bool> signInWithGoogle() async{
     try{
       GoogleSignIn googleSignIn=GoogleSignIn();
@@ -48,6 +50,7 @@ class AuthService implements BaseAuth{
     }
   }
 
+  //current user
   Future <String> currentUser() async{
     FirebaseUser user =await FirebaseAuth.instance.currentUser();
     return user.uid;

@@ -6,6 +6,7 @@ class HomePage extends StatelessWidget{
   final BaseAuth auth;
   final VoidCallback onSignedOut;
 
+  //Sign out method
   void _signOut() async{
     try{
       await auth.signOut();
@@ -19,7 +20,7 @@ class HomePage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome'),
+        title: Text('Home'),
         actions: <Widget>[
           FlatButton(
             child: Text(

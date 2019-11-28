@@ -3,6 +3,8 @@ import 'package:smart_healthy_food/app_screens/auth.dart';
 import 'package:smart_healthy_food/app_screens/home.dart';
 import 'package:smart_healthy_food/app_screens/login.dart';
 
+
+//page for identify there are user or not
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
   final BaseAuth auth;

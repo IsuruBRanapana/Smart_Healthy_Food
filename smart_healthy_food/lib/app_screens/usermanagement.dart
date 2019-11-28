@@ -10,9 +10,20 @@ class UserManagement{
     }
   }
 
+// add data to firebase database
   Future<void> addData(userData) async{
     if(isLoggedIn()){
       Firestore.instance.collection('users').add(userData).catchError((e){
+        print(e);
+      });
+    }else{
+      print('You Need to log in');
+    }
+  }
+
+  Future<void> addMeasureData(userMeasureData) async{
+    if(isLoggedIn()){
+      Firestore.instance.collection('measure').add(userMeasureData).catchError((e){
         print(e);
       });
     }else{

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_healthy_food/app_screens/login.dart';
 import 'package:smart_healthy_food/app_screens/usermanagement.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -12,11 +13,12 @@ class SignUp extends StatefulWidget {
 enum FormType { register1, register2 }
 
 class _SignUpState extends State<SignUp> {
-
   FormType _formType = FormType.register1;
   UserManagement userObj = new UserManagement();
   var _formKey = GlobalKey<FormState>();
 
+
+// move to first registration form
   void moveToRegister1() {
     _formKey.currentState.reset();
     setState(() {
@@ -24,6 +26,8 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
+
+// move to second registration form
   void moveToRegister2() {
     _formKey.currentState.reset();
     setState(() {
@@ -80,8 +84,11 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
+  //sign up form
   Widget signUpForm() {
     TextStyle textStyle = Theme.of(context).textTheme.title;
+
+    // first registration form
     if (_formType == FormType.register1) {
       return Form(
         key: _formKey,
@@ -232,6 +239,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
 
+              //next page button for sevond registration form
               Container(
                 height: 70.0,
                 padding: EdgeInsets.only(
@@ -291,35 +299,39 @@ class _SignUpState extends State<SignUp> {
         ),
       );
     } else {
+
+      // second registration form
       return Form(
         key: _formKey,
         child: Padding(
           padding: EdgeInsets.all(_minimumPadding*3),
           child: ListView(
             children: <Widget>[
+
+              //age
               Padding(
                 padding: EdgeInsets.only(
                     top: _minimumPadding, bottom: _minimumPadding),
                 child: TextFormField(
-                  controller: heightController,
+                  controller: ageController,
                   validator: (String value) {
                     if (value.isEmpty) {
-                      return "Enter Your Height";
+                      return "Enter Your Age";
                     }
-                    userHeight = heightController.text;
+                    age = ageController.text;
                     return null;
                   },
                   keyboardType: TextInputType.number,
                   style: textStyle,
                   decoration: InputDecoration(
-                    labelText: "Height in cm",
+                    labelText: "Age in Years",
                     prefixIcon: Icon(Icons.arrow_upward),
                     labelStyle: Theme.of(context).textTheme.body1,
                     errorStyle: TextStyle(
                       color: Colors.redAccent,
                       fontSize: 15.0,
                     ),
-                    hintText: "178",
+                    hintText: "17",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
@@ -388,12 +400,85 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
+
+              //button for back button
+              Container(
+                height: 70.0,
+                padding: EdgeInsets.only(
+                    left: 65.0, right: 65.0, top: 10.0, bottom: 10.0),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0)),
+                  onPressed: () async {
+                    moveToRegister1();
+                  },
+                  color: Colors.green[400],
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 5.0),
+                    child: ListTile(
+                      leading: SizedBox(
+                        width: 20.0,
+                      ),
+                      title: Text(
+                        'back',
+                        style: TextStyle(fontSize: 24.0, color: Colors.white),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              //button for submit
+              Container(
+                height: 70.0,
+                padding: EdgeInsets.only(
+                    left: 65.0, right: 65.0, top: 10.0, bottom: 10.0),
+                child: RaisedButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0)),
+                  onPressed: () async {
+                    if(_formKey.currentState.validate()){
+                      userObj.addMeasureData({
+                        'Age':this.age,
+                        'Height':this.userHeight,
+                        'Weight':this.userHeight
+                      });
+                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                    }
+                  },
+                  color: Colors.green[400],
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 5.0),
+                    child: ListTile(
+                      leading: SizedBox(
+                        width: 20.0,
+                      ),
+                      title: Text(
+                        'Submit',
+                        style: TextStyle(fontSize: 24.0, color: Colors.white),
+                      ),
+                      trailing: Icon(
+                        Icons.add,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
             ],),
         ),
         );
     }
   }
 
+
+  // method for first name and last name
   Widget nameFieldSet(
       TextEditingController txtController, String retEmpty, String lblText,
       [String hintTxt]) {
