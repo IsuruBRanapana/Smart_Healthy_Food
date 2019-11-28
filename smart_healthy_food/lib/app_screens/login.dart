@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_healthy_food/app_screens/auth.dart';
-import 'package:smart_healthy_food/app_screens/home.dart';
+import 'package:smart_healthy_food/app_screens/combine.dart';
 import 'package:smart_healthy_food/app_screens/signup.dart';
 
 class LoginPage extends StatefulWidget{
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage>{
               
               //logo
               Container(
-                height: 350.0,
+                height: 300.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('images/logo.png'))
@@ -175,7 +175,7 @@ class _LoginPageState extends State<LoginPage>{
                         Navigator.pop(context);
                         Navigator.push(context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage()
+                            builder: (context) => MyTabs()
                           )
                         );
                         
@@ -238,6 +238,10 @@ class _LoginPageState extends State<LoginPage>{
                 ),
               ),
 
+              //Sized box
+              SizedBox(
+                height: 20.0,
+              ),
               //sign up gesture detector
               Center(
                 child: Row(

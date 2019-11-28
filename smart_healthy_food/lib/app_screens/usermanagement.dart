@@ -30,4 +30,18 @@ class UserManagement{
       print('You Need to log in');
     }
   }
+
+  Future<void> addFoodDataToMatta(mattaData) async{
+    if(isLoggedIn()){
+      Firestore.instance.collection('Matta').add(mattaData).catchError((e){
+        print(e);
+      });
+    }else{
+      print('You Need to log in');
+    }
+  }
+
+  getDataFromMatta() async{
+    return await Firestore.instance.collection('Matta').getDocuments();
+  }
 }
